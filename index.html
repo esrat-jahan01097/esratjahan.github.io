@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esrat Jahan</title>
+<meta name="description" content="Esrat Jahan — software engineer and MSc Data Science researcher working on computer vision, continual learning, and multimodal (vision–language) models.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%235b5bd6'/><text x='16' y='22' font-size='16' font-family='Inter,Arial' font-weight='700' fill='white' text-anchor='middle'>EJ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7fb; --bg2:#ffffff; --ink:#0f1222; --muted:#5a5f75; --line:#e3e6f0;
+  --p1:#5b5bd6; --p2:#d64b8a; --p3:#1fb6a6; --glow:rgba(91,91,214,.18);
+  --card:#ffffff; --shadow:0 10px 30px rgba(15,18,34,.08);
+}
+[data-theme="dark"]{
+  --bg:#0c0e1a; --bg2:#12152a; --ink:#eef0ff; --muted:#9aa0bd; --line:#232744;
+  --p1:#8b8bff; --p2:#ff6fae; --p3:#39e0cd; --glow:rgba(139,139,255,.22);
+  --card:#151935; --shadow:0 10px 30px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16.5px;line-height:1.65;transition:background .3s,color .3s;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+::selection{background:var(--p1);color:#fff}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;transition:.3s}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+nav.scrolled{background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em}
+.logo span{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--p1),var(--p2));display:grid;place-items:center;color:#fff;font-size:13px}
+nav ul{list-style:none;display:flex;gap:6px;margin:0;padding:0;align-items:center}
+nav ul a{padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--muted);transition:.2s}
+nav ul a:hover,nav ul a.active{color:var(--ink);background:color-mix(in srgb,var(--p1) 12%,transparent)}
+#theme{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);cursor:pointer;display:grid;place-items:center;color:var(--ink);margin-left:8px;transition:.2s}
+#theme:hover{transform:rotate(20deg)}
+#theme svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.menu{display:none}
+
+/* hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:float 14s ease-in-out infinite;z-index:0}
+.b1{width:520px;height:520px;background:var(--p1);top:-140px;right:-120px}
+.b2{width:420px;height:420px;background:var(--p2);bottom:-160px;left:-120px;animation-delay:-5s}
+.b3{width:300px;height:300px;background:var(--p3);top:40%;left:45%;animation-delay:-9s;opacity:.3}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.08)}}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding-top:80px;padding-bottom:60px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--p1);margin-bottom:18px}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--p3);box-shadow:0 0 0 0 var(--p3);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--p3) 60%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(44px,7vw,78px);line-height:1.02;margin:0 0 18px;letter-spacing:-.02em;font-weight:700}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--p1),var(--p2),var(--p3));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% 0}}
+.tagline{font-size:20px;color:var(--muted);margin:0 0 10px;min-height:1.6em}
+.tagline b{color:var(--ink);font-weight:600}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--p1);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{color:var(--muted);max-width:520px;margin:0 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px;transition:.25s;border:1px solid var(--line);background:var(--bg2)}
+.btn.primary{background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;border:0;box-shadow:0 8px 24px var(--glow)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px var(--glow)}
+.btn svg{width:16px;height:16px;fill:currentColor}
+.social{display:inline-flex;gap:10px;align-items:center}
+.social a{position:relative;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--bg2);color:var(--ink);transition:.25s;box-shadow:0 2px 8px rgba(15,18,34,.05)}
+.social a svg{width:20px;height:20px;fill:currentColor;transition:.25s}
+.social a::after{content:attr(data-label);position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-4px);font-size:11px;font-weight:600;white-space:nowrap;background:var(--ink);color:var(--bg);padding:4px 9px;border-radius:6px;opacity:0;pointer-events:none;transition:.2s}
+.social a:hover{transform:translateY(-3px);border-color:transparent;background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;box-shadow:0 10px 24px var(--glow)}
+.social a:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
+.social .sep{width:1px;height:28px;background:var(--line);margin:0 4px}
+
+.portrait{position:relative;justify-self:center}
+.ring{width:300px;height:300px;border-radius:50%;padding:6px;background:conic-gradient(from 0deg,var(--p1),var(--p2),var(--p3),var(--p1));animation:spin 12s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ring>div{width:100%;height:100%;border-radius:50%;background:var(--bg);display:grid;place-items:center;overflow:hidden;animation:spin 12s linear infinite reverse}
+.ring>div span{font-family:Fraunces,serif;font-size:96px;font-weight:700;background:linear-gradient(135deg,var(--p1),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ring img{width:100%;height:100%;object-fit:cover}
+.chip{position:absolute;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:14px;padding:10px 14px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;animation:bob 5s ease-in-out infinite}
+.chip svg{width:18px;height:18px}
+.c1{top:10px;left:-40px}.c2{bottom:30px;right:-50px;animation-delay:-2s}.c3{bottom:-10px;left:10px;animation-delay:-4s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:12px;letter-spacing:.14em;text-transform:uppercase;z-index:1}
+.scroll::after{content:"";display:block;width:1px;height:36px;background:linear-gradient(var(--muted),transparent);margin:8px auto 0;animation:drop 1.6s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* sections */
+section{padding:100px 0}
+.head{margin-bottom:40px}
+.head small{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--p1);margin-bottom:10px}
+.head h2{font-family:Fraunces,serif;font-size:clamp(30px,4vw,44px);margin:0;letter-spacing:-.02em;line-height:1.1}
+.head p{color:var(--muted);max-width:600px;margin:14px 0 0}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start}
+.about p{color:var(--muted);margin:0 0 16px;font-size:17px}
+.about p strong{color:var(--ink);font-weight:600}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);transition:.25s}
+.stat:hover{transform:translateY(-4px);border-color:var(--p1)}
+.stat b{display:block;font-family:Fraunces,serif;font-size:36px;line-height:1;background:linear-gradient(135deg,var(--p1),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:13px;color:var(--muted);display:block;margin-top:8px}
+
+/* interests */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow);transition:.3s;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),var(--glow),transparent 60%);opacity:0;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--p1) 50%,var(--line))}
+.card:hover::before{opacity:1}
+.icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;color:#fff}
+.icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.i1{background:linear-gradient(135deg,var(--p1),#8f6bff)}.i2{background:linear-gradient(135deg,var(--p2),#ff8f6b)}.i3{background:linear-gradient(135deg,var(--p3),#4bd67c)}.i4{background:linear-gradient(135deg,#f0a830,var(--p2))}
+.card h3{margin:0 0 8px;font-size:19px;letter-spacing:-.01em}
+.card p{margin:0;color:var(--muted);font-size:15px}
+
+/* timeline */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--p1),var(--p2),var(--p3))}
+.tl{position:relative;margin-bottom:26px}
+.tl::before{content:"";position:absolute;left:-31px;top:24px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--p1);box-shadow:0 0 0 4px var(--bg)}
+.tl:nth-child(2)::before{border-color:var(--p2)}.tl:nth-child(3)::before{border-color:var(--p3)}.tl:nth-child(4)::before{border-color:#f0a830}
+.tl .card{padding:26px 28px}
+.tl .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:6px}
+.badge{font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;background:color-mix(in srgb,var(--p1) 12%,transparent);color:var(--p1)}
+.tl .meta{font-size:13.5px;color:var(--muted);margin:0 0 12px}
+.tl p{color:var(--muted);font-size:15.5px;margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-size:12px;font-weight:500;padding:5px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--muted);transition:.2s}
+.card:hover .tag{border-color:color-mix(in srgb,var(--p1) 40%,var(--line))}
+
+/* education + contact */
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.edu .card{display:flex;gap:18px;align-items:flex-start}
+.edu .year{font-family:Fraunces,serif;font-size:22px;font-weight:700;color:var(--p1);white-space:nowrap;line-height:1.2}
+.edu h3{font-size:18px;margin:0 0 4px}
+.edu p{margin:0;color:var(--muted);font-size:14.5px}
+.contact{border-radius:30px;padding:60px 40px;text-align:center;background:linear-gradient(135deg,color-mix(in srgb,var(--p1) 14%,var(--card)),color-mix(in srgb,var(--p2) 12%,var(--card)));border:1px solid var(--line);position:relative;overflow:hidden}
+.contact h2{font-family:Fraunces,serif;font-size:clamp(28px,4vw,40px);margin:0 0 10px;letter-spacing:-.02em}
+.contact p{color:var(--muted);margin:0 auto 26px;max-width:520px}
+footer{padding:30px 0 40px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--p1)}
+
+@media (max-width:840px){
+  .hero .wrap{grid-template-columns:1fr;text-align:center;padding-top:110px}
+  .lead,.cta{margin-left:auto;margin-right:auto;justify-content:center}
+  .portrait{order:-1}.ring{width:200px;height:200px}.ring>div span{font-size:64px}
+  .c1{left:-24px;top:-6px}.c2{right:-30px;bottom:-14px}.c3{display:none}
+  .about,.grid,.edu{grid-template-columns:1fr}
+  section{padding:70px 0}
+  nav ul{position:fixed;top:66px;right:14px;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow);display:none;align-items:stretch}
+  nav ul.open{display:flex}
+  .menu{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);color:var(--ink);cursor:pointer}
+  .menu svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+  .contact{padding:44px 22px}
+  .social .sep{display:none}
+  .scroll{display:none}
+  .hero .wrap{padding-bottom:70px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav"><div class="wrap">
+  <a class="logo" href="#top"><span>EJ</span>Esrat Jahan</a>
+  <div style="display:flex;align-items:center;gap:8px">
+    <ul id="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="theme" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path id="ticon" d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 12 3z"/></svg></button>
+    <button class="menu" id="menu" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <canvas id="net"></canvas>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><i></i>Open to PhD opportunities · Fall 2027</div>
+      <h1>Hi, I'm Esrat.<br>I teach machines to <em>see</em>.</h1>
+      <p class="tagline">Working on <b id="typed"></b><span class="caret"></span></p>
+      <p class="lead">Senior software engineer and MSc Data Science researcher from Dhaka, Bangladesh, building vision systems that keep learning after deployment and work for the people current benchmarks overlook.</p>
+      <div class="cta">
+        <a class="btn primary" href="#research">See my research <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="social">
+          <span class="sep"></span>
+          <a href="https://github.com/esratjahan" target="_blank" rel="noopener" aria-label="GitHub" data-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.9 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg></a>
+          <a href="https://www.linkedin.com/in/israt-momi-8a3146169/" target="_blank" rel="noopener" aria-label="LinkedIn" data-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7c.5-1 1.9-2 3.9-2 4.1 0 4.3 2.7 4.3 6.2V21h-4v-5.4c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg></a>
+          <a href="mailto:momijahan776@gmail.com" aria-label="Email" data-label="Email"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.4V18h16V7.4l-8 5.3zM4.6 7l7.4 4.9L19.4 7z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="portrait">
+      <div class="ring"><div>
+        <!-- Replace the initials with your photo: <img src="photo.jpg" alt="Esrat Jahan"> -->
+        <span>EJ</span>
+      </div></div>
+      <div class="chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="var(--p1)" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="12" cy="12" r="3.5"/></svg>Computer Vision</div>
+      <div class="chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="var(--p2)" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h13"/></svg>NLP · Multimodal</div>
+      <div class="chip c3"><svg viewBox="0 0 24 24" fill="none" stroke="var(--p3)" stroke-width="2"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg>Continual Learning</div>
+    </div>
+  </div>
+  <div class="scroll">Scroll</div>
+</header>
+
+<section id="about"><div class="wrap">
+  <div class="head reveal"><small>About</small><h2>Engineer by day, researcher by conviction.</h2></div>
+  <div class="about">
+    <div class="reveal">
+      <p>I am completing an <strong>MSc in Data Science at United International University</strong>, where my thesis studies deep convolutional networks and continual learning for food image recognition, extending Western-centric benchmarks to Bangladeshi cuisine.</p>
+      <p>Alongside my studies I work as a <strong>Senior Software Engineer at Guardian Life Insurance Limited</strong>, building the Laravel and Oracle-based systems behind policy administration and claims processing. Working with large, imperfect, real-world data every day shapes how I think about research.</p>
+      <p>I care about models that <strong>keep learning after deployment</strong>, that work for the regions and people current benchmarks overlook, and whose decisions can be explained — and I am applying to PhD programs in computer vision and multimodal learning for Fall 2027.</p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b data-count="3">0</b><span>years building production systems</span></div>
+      <div class="stat"><b data-count="4">0</b><span>research projects in ML &amp; deep learning</span></div>
+      <div class="stat"><b>3.90</b><span>BSc CGPA · Software Engineering</span></div>
+      <div class="stat"><b>3.67</b><span>MSc CGPA · Data Science (current)</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="interests"><div class="wrap">
+  <div class="head reveal"><small>Research interests</small><h2>Questions I want to spend a PhD on.</h2></div>
+  <div class="grid">
+    <div class="card reveal"><div class="icon i1"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></div><h3>Continual &amp; data-efficient vision</h3><p>Adapting pretrained vision backbones and vision–language models to new categories and domains incrementally, without catastrophic forgetting, under realistic, long-tailed, culturally diverse shifts.</p></div>
+    <div class="card reveal"><div class="icon i2"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></div><h3>Language as supervision for vision</h3><p>Using text — captions, recipes, attribute descriptions — to bootstrap recognition of visually rare categories where labeled images are scarce.</p></div>
+    <div class="card reveal"><div class="icon i3"><svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Interpretable recognition</h3><p>Understanding what models attend to — Grad-CAM and beyond — and turning that into explanations a non-expert can act on.</p></div>
+    <div class="card reveal"><div class="icon i4"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></div><h3>Multimodal AI for low-resource settings</h3><p>Vision, language and document understanding for Bengali and other under-represented languages and regions.</p></div>
+  </div>
+</div></section>
+
+<section id="research"><div class="wrap">
+  <div class="head reveal"><small>Research &amp; thesis</small><h2>What I've built and studied.</h2></div>
+  <div class="timeline">
+    <div class="tl reveal"><div class="card">
+      <div class="top"><h3 style="margin:0;font-size:20px">Smart Food: Exploring Deep CNN Models for Recognition and Analysis</h3><span class="badge">2024 – 2026</span></div>
+      <p class="meta">MSc thesis · United International University</p>
+      <p>Public food-recognition benchmarks are Western-centric, and models trained on them perform poorly on South Asian dishes. I built a Bangladeshi-cuisine dataset and studied how a ResNet-50 recognizer can be extended to new cuisines incrementally. Naïve fine-tuning caused catastrophic forgetting of the original classes, so the thesis compares Elastic Weight Consolidation with replay-based fine-tuning, uses CLAHE to correct uneven illumination in home-cooked food photographs, applies MixUp and CutMix against class imbalance, and uses Grad-CAM to inspect what the network actually attends to.</p>
+      <div class="tags"><span class="tag">Computer vision</span><span class="tag">Continual learning</span><span class="tag">ResNet-50</span><span class="tag">EWC</span><span class="tag">Replay</span><span class="tag">Grad-CAM</span><span class="tag">PyTorch</span></div>
+    </div></div>
+    <div class="tl reveal"><div class="card">
+      <div class="top"><h3 style="margin:0;font-size:20px">Tuberculosis prediction using regression analysis</h3><span class="badge">Ongoing</span></div>
+      <p class="meta">Academic research project</p>
+      <p>Statistical and machine-learning study of tuberculosis prediction using regression models, covering data preparation, feature analysis and model evaluation.</p>
+      <div class="tags"><span class="tag">Regression</span><span class="tag">Health data</span><span class="tag">Scikit-learn</span></div>
+    </div></div>
+    <div class="tl reveal"><div class="card">
+      <div class="top"><h3 style="margin:0;font-size:20px">A framework for predicting colorectal cancer</h3><span class="badge">2021</span></div>
+      <p class="meta">BSc research project · Daffodil International University</p>
+      <p>Designed and evaluated a machine-learning framework for early prediction of colorectal cancer, comparing classifiers and feature-selection strategies.</p>
+      <div class="tags"><span class="tag">Machine learning</span><span class="tag">Medical prediction</span></div>
+    </div></div>
+    <div class="tl reveal"><div class="card">
+      <div class="top"><h3 style="margin:0;font-size:20px">Fish market data analysis</h3><span class="badge">2020</span></div>
+      <p class="meta">Academic data-analysis project</p>
+      <p>Exploratory analysis and predictive modelling of fish market data — cleaning, feature engineering, visualisation and model comparison.</p>
+      <div class="tags"><span class="tag">Data analysis</span><span class="tag">Pandas</span></div>
+    </div></div>
+  </div>
+</div></section>
+
+<section id="education"><div class="wrap">
+  <div class="head reveal"><small>Education</small><h2>Where I studied.</h2></div>
+  <div class="edu">
+    <div class="card reveal"><div class="year">2024<br>–26</div><div><h3>MSc in Data Science</h3><p>United International University<br>CGPA 3.67 / 4.00 (current) · expected 2026</p></div></div>
+    <div class="card reveal"><div class="year">2017<br>–21</div><div><h3>BSc in Software Engineering</h3><p>Daffodil International University<br>CGPA 3.90 / 4.00</p></div></div>
+  </div>
+</div></section>
+
+<section id="contact" style="padding-top:0"><div class="wrap">
+  <div class="contact reveal">
+    <h2>Let's talk research.</h2>
+    <p>If you work on vision, continual learning or multimodal models and are open to a conversation, I'd love to hear from you.</p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn primary" href="mailto:momijahan776@gmail.com"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.4V18h16V7.4l-8 5.3zM4.6 7l7.4 4.9L19.4 7z"/></svg>momijahan776@gmail.com</a>
+      <div class="social">
+        <a href="https://github.com/esratjahan" target="_blank" rel="noopener" aria-label="GitHub" data-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.9 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg></a>
+        <a href="https://www.linkedin.com/in/israt-momi-8a3146169/" target="_blank" rel="noopener" aria-label="LinkedIn" data-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7c.5-1 1.9-2 3.9-2 4.1 0 4.3 2.7 4.3 6.2V21h-4v-5.4c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <footer><span>© <span id="y"></span> Esrat Jahan</span><span>Dhaka, Bangladesh · <a href="#top">Back to top ↑</a></span></footer>
+</div></section>
+
+<script>
+// theme
+const root=document.documentElement,tb=document.getElementById('theme'),ti=document.getElementById('ticon');
+const SUN="M12 4v2M12 18v2M4 12h2M18 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z",MOON="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 12 3z";
+function setTheme(t){root.setAttribute('data-theme',t);ti.setAttribute('d',t==='dark'?SUN:MOON);try{localStorage.setItem('theme',t)}catch(e){}}
+let saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+setTheme(saved||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+tb.onclick=()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
+
+// mobile menu
+const links=document.getElementById('links');document.getElementById('menu').onclick=()=>links.classList.toggle('open');
+links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('open'));
+
+// nav scroll + active section
+const nav=document.getElementById('nav'),secs=[...document.querySelectorAll('section[id]')],navA=[...links.querySelectorAll('a')];
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>20);
+  let cur='';secs.forEach(s=>{if(scrollY>=s.offsetTop-200)cur=s.id});
+  navA.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));},{passive:true});
+
+// typing
+const words=['computer vision','continual learning','vision–language models','multimodal AI','interpretable recognition'];
+let wi=0,ci=0,del=false;const el=document.getElementById('typed');
+(function type(){const w=words[wi];el.textContent=w.slice(0,ci);
+  if(!del&&ci<w.length){ci++;setTimeout(type,70)}else if(!del){del=true;setTimeout(type,1600)}
+  else if(ci>0){ci--;setTimeout(type,35)}else{del=false;wi=(wi+1)%words.length;setTimeout(type,300)}})();
+
+// reveal + counters
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
+  e.target.querySelectorAll('[data-count]').forEach(n=>{const t=+n.dataset.count;let v=0;const s=setInterval(()=>{v++;n.textContent=v+'+';if(v>=t)clearInterval(s)},220)})}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// spotlight cards
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}));
+
+// network canvas
+const cv=document.getElementById('net'),cx=cv.getContext('2d');let W,H,pts=[];
+function size(){W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio;
+  pts=Array.from({length:Math.min(70,Math.floor(W/22))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))}
+size();addEventListener('resize',size);
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+(function draw(){cx.clearRect(0,0,W,H);const dark=root.getAttribute('data-theme')==='dark';
+  cx.fillStyle=dark?'rgba(200,205,255,.55)':'rgba(91,91,214,.5)';cx.strokeStyle=dark?'rgba(200,205,255,.12)':'rgba(91,91,214,.12)';cx.lineWidth=devicePixelRatio;
+  for(const p of pts){if(!reduce){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1}
+    cx.beginPath();cx.arc(p.x,p.y,1.6*devicePixelRatio,0,7);cx.fill()}
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+    if(d<140*devicePixelRatio){cx.globalAlpha=1-d/(140*devicePixelRatio);cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke();cx.globalAlpha=1}}
+  if(!reduce)requestAnimationFrame(draw)})();
+
+document.getElementById('y').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
